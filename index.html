@@ -3,117 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Sin Accesibilidad</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Proyecto de Accesibilidad Web</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --background-color: #ffffff;
+            --text-color: #494949;
+            --card-background: #f8f9fa;
+            --border-color: #dddddd;
+            --hover-color: #e9ecef;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+        }
+        
+        .description {
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+        
+        .pages-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .page-card {
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        
+        .page-card:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .page-card:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .page-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .page-features {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .page-features li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .page-features li:before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .no-accessibility .page-features li:before {
+            content: "❌";
+        }
+        
+        .with-accessibility .page-features li:before {
+            content: "✅";
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+        }
+        
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .pages-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .page-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Banner superior -->
-    <div class="banner">
-        <button class="hamburger-menu" id="hamburgerMenu">☰</button>
-        <span class="banner-title">Cine Tico</span>
-    </div>
-
     <div class="container">
-        <!-- Sección izquierda - Tree View -->
-        <div class="sidebar">
-            <div class="tree-view">
-                <!-- El contenido se generará dinámicamente con JavaScript -->
-            </div>
-        </div>
-
-        <!-- Sección principal -->
-        <div class="main-content">
-            <div class="page-title">Formulario de Registro</div>
+        <header class="header">
+            <h1 class="title">Proyecto de Accesibilidad Web</h1>
+            <p class="subtitle">Comparación entre una página sin accesibilidad y otra con accesibilidad completa</p>
+        </header>
+        
+        <section class="description">
+            <p>
+                Este proyecto educativo demuestra la diferencia entre el desarrollo web sin considerar la accesibilidad 
+                y el desarrollo web siguiendo las mejores prácticas de accesibilidad. Ambas páginas tienen la misma 
+                funcionalidad y apariencia visual, pero difieren significativamente en su implementación técnica.
+            </p>
+            <br>
+            <p>
+                <strong>Funcionalidad común:</strong> Formulario de registro para cine con selección de películas por género, 
+                validación de campos, navegación responsive y visualización de resultados.
+            </p>
+        </section>
+        
+        <main class="pages-grid">
+            <a href="sin-accesibilidad/" class="page-card no-accessibility">
+                <h2 class="page-title">Página Sin Accesibilidad</h2>
+                <p class="page-description">
+                    Ejemplo de mala implementación con problemas de accesibilidad intencionados para fines educativos.
+                </p>
+                <ul class="page-features">
+                    <li>Solo usa DIV y SPAN</li>
+                    <li>Sin elementos semánticos</li>
+                    <li>Sin atributos ARIA</li>
+                    <li>Outline de focus eliminado</li>
+                    <li>Navegación personalizada bloqueada</li>
+                    <li>Calendario personalizado complejo</li>
+                    <li>Botones como DIVs</li>
+                </ul>
+            </a>
             
-            <!-- Área de película seleccionada -->
-            <div class="movie-display" id="movieDisplay" style="display: none;">
-                <div class="movie-header">Película Seleccionada</div>
-                <div class="movie-content">
-                    <div class="movie-image">
-                        <img id="movieImage" src="" alt="Poster de la película">
-                    </div>
-                    <div class="movie-info">
-                        <div class="movie-title" id="movieTitle"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="form-container">
-                <div class="form-group">
-                    <span class="form-label">Nombre</span>
-                    <input type="text" id="nombre" class="form-input">
-                    <span class="input-hint">Para continuar digite Enter.</span>
-                    <span class="error-message" id="errorNombre"></span>
-                </div>
-
-                <div class="form-group">
-                    <span class="form-label">Nuevo Password</span>
-                    <input type="password" id="nuevoPassword" class="form-input">
-                    <span class="input-hint">Para continuar digite Enter.</span>
-                    <span class="error-message" id="errorPassword"></span>
-                </div>
-
-                <div class="form-group">
-                    <span class="form-label">Cine de su preferencia</span>
-                    <div class="custom-select" id="provinciaSelect">
-                        <div class="select-trigger" tabindex="0">
-                            <span class="select-value">Seleccione una provincia</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-options">
-                            <div class="select-option" data-value="">Seleccione una provincia</div>
-                            <div class="select-option" data-value="san-jose">San José</div>
-                            <div class="select-option" data-value="alajuela">Alajuela</div>
-                            <div class="select-option" data-value="cartago">Cartago</div>
-                            <div class="select-option" data-value="heredia">Heredia</div>
-                            <div class="select-option" data-value="guanacaste">Guanacaste</div>
-                            <div class="select-option" data-value="puntarenas">Puntarenas</div>
-                            <div class="select-option" data-value="limon">Limón</div>
-                        </div>
-                    </div>
-                    <span class="error-message" id="errorProvincia"></span>
-                </div>
-
-                <div class="form-group">
-                    <span class="form-label">Fecha</span>
-                    <div class="date-picker" id="datePicker">
-                        <div class="date-header">
-                            <div class="date-nav" id="prevMonth" tabindex="0">◀</div>
-                            <span class="date-title" id="monthYear">Enero 2025</span>
-                            <div class="date-nav" id="nextMonth" tabindex="0">▶</div>
-                        </div>
-                        <div class="date-grid" id="dateGrid">
-                            <div class="date-day-header">D</div>
-                            <div class="date-day-header">L</div>
-                            <div class="date-day-header">M</div>
-                            <div class="date-day-header">M</div>
-                            <div class="date-day-header">J</div>
-                            <div class="date-day-header">V</div>
-                            <div class="date-day-header">S</div>
-                        </div>
-                    </div>
-                    <div class="selected-date" id="selectedDate">Fecha seleccionada: Ninguna</div>
-                    <span class="error-message" id="errorFecha"></span>
-                </div>
-
-                <div class="form-actions">
-                    <div class="submit-button" id="submitButton" tabindex="0">Enviar</div>
-                </div>
-            </div>
-        </div>
+            <a href="con-accesibilidad/" class="page-card with-accessibility">
+                <h2 class="page-title">Página Con Accesibilidad</h2>
+                <p class="page-description">
+                    Implementación siguiendo las mejores prácticas de accesibilidad web y estándares WCAG.
+                </p>
+                <ul class="page-features">
+                    <li>Elementos semánticos HTML5</li>
+                    <li>Atributos ARIA completos</li>
+                    <li>Navegación por teclado estándar</li>
+                    <li>Focus visible y accesible</li>
+                    <li>Validación HTML5 nativa</li>
+                    <li>Input type="date" nativo</li>
+                    <li>Skip links y landmarks</li>
+                </ul>
+            </a>
+        </main>
+        
+        <footer class="footer">
+            <p>
+                Proyecto educativo sobre accesibilidad web • 
+                <a href="README.md">Ver documentación</a>
+            </p>
+        </footer>
     </div>
-
-    <!-- Dialog para mostrar resultados -->
-    <dialog id="resultDialog" class="result-dialog">
-        <div class="dialog-content">
-            <div class="dialog-header">Registrado con éxito</div>
-            <div class="dialog-body" id="dialogBody"></div>
-            <div class="dialog-actions">
-                <div class="dialog-close" id="closeDialog">Cerrar</div>
-            </div>
-        </div>
-    </dialog>
-
-    <script src="script.js"></script>
 </body>
 </html>

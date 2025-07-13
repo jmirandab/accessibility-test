@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Con Accesibilidad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Skip to main content link -->
+    <a href="#main-content" class="skip-link">Ir al contenido principal</a>
+    
+    <!-- Banner superior -->
+    <header class="banner">
+        <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menú de navegación" aria-expanded="false" aria-controls="navigation-menu">☰</button>
+        <h1 class="banner-title">Cine Tico</h1>
+    </header>
+
+    <div class="container">
+        <!-- Sección izquierda - Tree View -->
+        <nav class="sidebar" id="navigation-menu" aria-label="Menú de películas">
+            <div class="tree-view" role="menu" aria-label="Seleccionar película por género">
+                <!-- El contenido se generará dinámicamente con JavaScript -->
+            </div>
+        </nav>
+
+        <!-- Sección principal -->
+        <main class="main-content" id="main-content">
+            <h2 class="page-title">Formulario de Registro</h2>
+            
+            <!-- Área de película seleccionada -->
+            <section class="movie-display" id="movieDisplay" style="display: none;" aria-live="polite">
+                <h3 class="movie-header">Película Seleccionada</h3>
+                <div class="movie-content">
+                    <div class="movie-image">
+                        <img id="movieImage" src="" alt="Poster de la película">
+                    </div>
+                    <div class="movie-info">
+                        <h4 class="movie-title" id="movieTitle"></h4>
+                    </div>
+                </div>
+            </section>
+            
+            <form class="form-container" method="post" action="#" id="registrationForm">
+                <div class="form-group">
+                    <label for="nombre" class="form-label">Nombre <span class="required">*</span></label>
+                    <input type="text" id="nombre" name="nombre" class="form-input" required pattern="^[a-zA-Z]{2,}$" aria-describedby="nombre-hint errorNombre" title="Debe contener al menos 2 letras">
+                    <div id="nombre-hint" class="input-hint">Debe contener al menos 2 letras.</div>
+                    <div class="error-message" id="errorNombre" aria-live="polite"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nuevoPassword" class="form-label">Nuevo Password <span class="required">*</span></label>
+                    <input type="password" id="nuevoPassword" name="nuevoPassword" class="form-input" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$" aria-describedby="password-hint errorPassword" title="Debe contener al menos una minúscula, una mayúscula, un número y tener mínimo 6 caracteres">
+                    <div id="password-hint" class="input-hint">Debe contener al menos una minúscula, una mayúscula, un número y tener mínimo 6 caracteres.</div>
+                    <div class="error-message" id="errorPassword" aria-live="polite"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="provincia" class="form-label">Cine de su preferencia <span class="required">*</span></label>
+                    <!-- Select nativo oculto para validación -->
+                    <select id="provincia" name="provincia" class="form-input visually-hidden" required aria-hidden="true">
+                        <option value="">Seleccione una provincia</option>
+                        <option value="san-jose">San José</option>
+                        <option value="alajuela">Alajuela</option>
+                        <option value="cartago">Cartago</option>
+                        <option value="heredia">Heredia</option>
+                        <option value="guanacaste">Guanacaste</option>
+                        <option value="puntarenas">Puntarenas</option>
+                        <option value="limon">Limón</option>
+                    </select>
+                    <!-- Select personalizado para la UI -->
+                    <div class="custom-select" id="provinciaSelect" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="provinciaSelect-label" aria-describedby="errorProvincia" tabindex="0">
+                        <div class="select-trigger">
+                            <span class="select-value">Seleccione una provincia</span>
+                            <span class="select-arrow" aria-hidden="true">▼</span>
+                        </div>
+                        <ul class="select-options" role="listbox" aria-labelledby="provinciaSelect-label">
+                            <li class="select-option" role="option" data-value="" aria-selected="true" tabindex="-1">Seleccione una provincia</li>
+                            <li class="select-option" role="option" data-value="san-jose" tabindex="-1">San José</li>
+                            <li class="select-option" role="option" data-value="alajuela" tabindex="-1">Alajuela</li>
+                            <li class="select-option" role="option" data-value="cartago" tabindex="-1">Cartago</li>
+                            <li class="select-option" role="option" data-value="heredia" tabindex="-1">Heredia</li>
+                            <li class="select-option" role="option" data-value="guanacaste" tabindex="-1">Guanacaste</li>
+                            <li class="select-option" role="option" data-value="puntarenas" tabindex="-1">Puntarenas</li>
+                            <li class="select-option" role="option" data-value="limon" tabindex="-1">Limón</li>
+                        </ul>
+                    </div>
+                    <div class="error-message" id="errorProvincia" aria-live="polite"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha" class="form-label">Fecha <span class="required">*</span></label>
+                    <input type="date" id="fecha" name="fecha" class="form-input" required aria-describedby="errorFecha">
+                    <div class="error-message" id="errorFecha" aria-live="polite"></div>
+                </div>
+
+                <button type="submit" class="submit-button">Registrar</button>
+            </form>
+        </main>
+    </div>
+
+    <!-- Dialog para mostrar resultados -->
+    <dialog id="resultDialog" class="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-content">
+        <div class="dialog-content">
+            <h2 id="dialog-title">Registrado con éxito</h2>
+            <div id="dialog-content" class="dialog-body">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="dialog-actions">
+                <button type="button" class="dialog-close" onclick="closeDialog()" aria-label="Cerrar diálogo">Cerrar</button>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+</html>
