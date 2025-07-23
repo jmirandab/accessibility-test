@@ -12,48 +12,33 @@ let appState = {
 const peliculas = {
     'Drama': [
         {
-            id: 'drama-pelicula-1',
-            title: 'Pelicula 1',
-            image: 'https://via.placeholder.com/150x200/4a90e2/ffffff?text=Drama+1'
+            id: 'drama-clara-sola',
+            title: 'Clara Sola',
+            image: '../img/clara_sola.jpeg'
         },
         {
-            id: 'drama-pelicula-2',
-            title: 'Pelicula 2',
-            image: 'https://via.placeholder.com/150x200/4a90e2/ffffff?text=Drama+2'
+            id: 'drama-aqui-y-ahora',
+            title: 'Aquí y ahora',
+            image: '../img/aqui_y_ahora.jpg'
         }
     ],
     'Comedia': [
         {
-            id: 'comedia-pelicula-1',
-            title: 'Pelicula 1',
-            image: 'https://via.placeholder.com/150x200/f39c12/ffffff?text=Comedia+1'
+            id: 'comedia-cascos-indomables',
+            title: 'Cascos Indomables',
+            image: '../img/cascos_indomables.jpg'
         },
         {
-            id: 'comedia-pelicula-2',
-            title: 'Pelicula 2',
-            image: 'https://via.placeholder.com/150x200/f39c12/ffffff?text=Comedia+2'
-        },
-        {
-            id: 'comedia-pelicula-3',
-            title: 'Pelicula 3',
-            image: 'https://via.placeholder.com/150x200/f39c12/ffffff?text=Comedia+3'
+            id: 'comedia-por-las-plumas',
+            title: 'Por las plumas',
+            image: '../img/por_las_plumas.jpg'
         }
     ],
     'Ciencia ficción': [
         {
-            id: 'ciencia-pelicula-1',
-            title: 'Pelicula 1',
-            image: 'https://via.placeholder.com/150x200/9b59b6/ffffff?text=Ciencia+1'
-        },
-        {
-            id: 'ciencia-pelicula-2',
-            title: 'Pelicula 2',
-            image: 'https://via.placeholder.com/150x200/9b59b6/ffffff?text=Ciencia+2'
-        },
-        {
-            id: 'ciencia-pelicula-3',
-            title: 'Pelicula 3',
-            image: 'https://via.placeholder.com/150x200/9b59b6/ffffff?text=Ciencia+3'
+            id: 'ciencia-orbita-prima',
+            title: 'Órbita Prima',
+            image: '../img/orbita_prima.jpg'
         }
     ]
 };
@@ -270,7 +255,7 @@ function selectMovie(movieId) {
     
     movieTitle.textContent = movie.title;
     movieImage.src = movie.image;
-    movieImage.alt = `Poster de ${movie.title}`;
+    movieImage.alt = `Poster de película`;
     
     // Mostrar el área de película
     movieDisplay.style.display = 'block';

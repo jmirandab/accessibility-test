@@ -9,48 +9,38 @@ let appState = {
 const peliculas = {
     'Drama': [
         {
-            id: 'drama-pelicula-1',
-            title: 'Pelicula 1',
-            image: 'https://via.placeholder.com/150x200/4a90e2/ffffff?text=Drama+1'
+            id: 'drama-clara-sola',
+            title: 'Clara Sola',
+            image: '../img/clara_sola.jpeg',
+            desc: 'El poster muestra a una mujer morena con un vestido blanco muy largo, el fondo esta cubierto de plantas helechos'
         },
         {
-            id: 'drama-pelicula-2',
-            title: 'Pelicula 2',
-            image: 'https://via.placeholder.com/150x200/4a90e2/ffffff?text=Drama+2'
+            id: 'drama-aqui-y-ahora',
+            title: 'Aquí y ahora',
+            image: '../img/aqui_y_ahora.jpg',
+            desc: 'Muestra el rostro de una mujer blanca'
         }
     ],
     'Comedia': [
         {
-            id: 'comedia-pelicula-1',
-            title: 'Pelicula 1',
-            image: 'https://via.placeholder.com/150x200/f39c12/ffffff?text=Comedia+1'
+            id: 'comedia-cascos-indomables',
+            title: 'Cascos Indomables',
+            image: '../img/cascos_indomables.jpg',
+            desc: 'El poster muestra un casco de motocicleta'
         },
         {
-            id: 'comedia-pelicula-2',
-            title: 'Pelicula 2',
-            image: 'https://via.placeholder.com/150x200/f39c12/ffffff?text=Comedia+2'
-        },
-        {
-            id: 'comedia-pelicula-3',
-            title: 'Pelicula 3',
-            image: 'https://via.placeholder.com/150x200/f39c12/ffffff?text=Comedia+3'
+            id: 'comedia-por-las-plumas',
+            title: 'Por las plumas',
+            image: '../img/por_las_plumas.jpg',
+            desc: 'El poster muestra la imagen de un gallo y una pistola'
         }
     ],
     'Ciencia ficción': [
         {
-            id: 'ciencia-pelicula-1',
-            title: 'Pelicula 1',
-            image: 'https://via.placeholder.com/150x200/9b59b6/ffffff?text=Ciencia+1'
-        },
-        {
-            id: 'ciencia-pelicula-2',
-            title: 'Pelicula 2',
-            image: 'https://via.placeholder.com/150x200/9b59b6/ffffff?text=Ciencia+2'
-        },
-        {
-            id: 'ciencia-pelicula-3',
-            title: 'Pelicula 3',
-            image: 'https://via.placeholder.com/150x200/9b59b6/ffffff?text=Ciencia+3'
+            id: 'ciencia-orbita-prima',
+            title: 'Órbita Prima',
+            image: '../img/orbita_prima.jpg',
+            desc: 'El poster muestra la silueta de una persona en primer plano y de fondo unos cohetes despegando'
         }
     ]
 };
@@ -125,6 +115,7 @@ function generateTreeView() {
             childDiv.setAttribute('data-movie-id', pelicula.id);
             childDiv.setAttribute('data-movie-title', pelicula.title);
             childDiv.setAttribute('data-movie-image', pelicula.image);
+            childDiv.setAttribute('data-movie-desc', pelicula.desc);
             childDiv.textContent = pelicula.title;
             
             childrenDiv.appendChild(childDiv);
@@ -140,27 +131,57 @@ function generateTreeView() {
 function setupHamburgerMenu() {
     const hamburgerMenu = document.getElementById('hamburgerMenu');
     const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+    
+    if (!hamburgerMenu || !sidebar || !mainContent) {
+        console.error('Hamburger menu, sidebar, or main content not found');
+        return;
+    }
     
     hamburgerMenu.addEventListener('click', function() {
-        const isCollapsed = sidebar.classList.contains('show');
-        
-        if (isCollapsed) {
-            sidebar.classList.remove('show');
-            hamburgerMenu.setAttribute('aria-expanded', 'false');
+        // En móvil, usar la clase 'show' para mostrar/ocultar
+        if (window.innerWidth <= 768) {
+            const isCurrentlyVisible = sidebar.classList.contains('show');
+            
+            if (isCurrentlyVisible) {
+                sidebar.classList.remove('show');
+                hamburgerMenu.setAttribute('aria-expanded', 'false');
+            } else {
+                sidebar.classList.add('show');
+                hamburgerMenu.setAttribute('aria-expanded', 'true');
+            }
         } else {
-            sidebar.classList.add('show');
-            hamburgerMenu.setAttribute('aria-expanded', 'true');
+            // En desktop, usar la lógica original (collapsed/expanded)
+            appState.sidebarCollapsed = !appState.sidebarCollapsed;
+            
+            if (appState.sidebarCollapsed) {
+                sidebar.classList.add('collapsed');
+                mainContent.classList.add('expanded');
+                hamburgerMenu.setAttribute('aria-expanded', 'false');
+            } else {
+                sidebar.classList.remove('collapsed');
+                mainContent.classList.remove('expanded');
+                hamburgerMenu.setAttribute('aria-expanded', 'true');
+            }
         }
-        
-        appState.sidebarCollapsed = !isCollapsed;
     });
     
-    // Cerrar sidebar con Escape
+    // Cerrar sidebar con Escape (solo en móvil)
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && sidebar.classList.contains('show')) {
+        if (e.key === 'Escape' && window.innerWidth <= 768 && sidebar.classList.contains('show')) {
             sidebar.classList.remove('show');
             hamburgerMenu.setAttribute('aria-expanded', 'false');
             hamburgerMenu.focus();
+        }
+    });
+    
+    // Cerrar sidebar al hacer clic fuera en móvil
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            if (!sidebar.contains(e.target) && !hamburgerMenu.contains(e.target)) {
+                sidebar.classList.remove('show');
+                hamburgerMenu.setAttribute('aria-expanded', 'false');
+            }
         }
     });
 }
@@ -224,7 +245,8 @@ function selectMovie(element) {
     appState.selectedMovie = {
         id: element.getAttribute('data-movie-id'),
         title: element.getAttribute('data-movie-title'),
-        image: element.getAttribute('data-movie-image')
+        image: element.getAttribute('data-movie-image'),
+        desc: element.getAttribute('data-movie-desc')
     };
     
     // Mostrar película seleccionada
@@ -241,7 +263,7 @@ function showSelectedMovie() {
     
     movieTitle.textContent = appState.selectedMovie.title;
     movieImage.src = appState.selectedMovie.image;
-    movieImage.alt = `Poster de ${appState.selectedMovie.title}`;
+    movieImage.alt = appState.selectedMovie.desc;
     
     movieDisplay.style.display = 'block';
 }
@@ -504,7 +526,7 @@ function showResult(data) {
             <div class="dialog-movie-header">Película Seleccionada</div>
             <div class="dialog-movie-content">
                 <div class="dialog-movie-image">
-                    <img src="${data.pelicula.image}" alt="Poster de ${data.pelicula.title}">
+                    <img src="${data.pelicula.image}" alt="${data.pelicula.desc}">
                 </div>
                 <div class="dialog-movie-title">${data.pelicula.title}</div>
             </div>
