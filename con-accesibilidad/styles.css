@@ -439,6 +439,7 @@ body {
     background-size: 12px;
     padding-right: 2.5rem;
     cursor: pointer;
+    line-height: 1.4rem;
 }
 
 .form-input.native-select:hover {

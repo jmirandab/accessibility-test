@@ -8,18 +8,19 @@ let appState = {
 // Películas costarricenses por género
 const peliculas = {
     'Drama': [
+        
+        {
+            id: 'drama-aqui-y-ahora',
+            title: 'Aquí y ahora',
+            image: '../img/aqui_y_ahora.jpg',
+            desc: 'Muestra el rostro de una mujer blanca, la imagen incluye dos sellos de premios'
+        },
         {
             id: 'drama-clara-sola',
             title: 'Clara Sola',
             image: '../img/clara_sola.jpeg',
             desc: 'El poster muestra a una mujer morena con un vestido blanco muy largo, el fondo esta cubierto de plantas y helechos'
         },
-        {
-            id: 'drama-aqui-y-ahora',
-            title: 'Aquí y ahora',
-            image: '../img/aqui_y_ahora.jpg',
-            desc: 'Muestra el rostro de una mujer blanca, la imagen incluye dos sellos de premios'
-        }
     ],
     'Comedia': [
         {
@@ -98,7 +99,7 @@ function generateTreeView() {
         parentDiv.setAttribute('aria-expanded', 'false');
         parentDiv.setAttribute('tabindex', '0');
         parentDiv.innerHTML = `
-            <span class="tree-icon">▶</span>
+            <span class="tree-icon" aria-hidden="true">▶</span>
             <span>${genero}</span>
         `;
         
@@ -234,12 +235,12 @@ function selectMovie(element) {
     // Remover selección anterior
     document.querySelectorAll('.tree-child').forEach(child => {
         child.classList.remove('selected');
-        child.setAttribute('aria-selected', 'false');
+   //     child.setAttribute('aria-selected', 'false');
     });
     
     // Agregar selección actual
     element.classList.add('selected');
-    element.setAttribute('aria-selected', 'true');
+  //  element.setAttribute('aria-selected', 'true');
     
     // Actualizar estado
     appState.selectedMovie = {
