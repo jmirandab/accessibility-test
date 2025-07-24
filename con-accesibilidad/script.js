@@ -12,13 +12,13 @@ const peliculas = {
             id: 'drama-clara-sola',
             title: 'Clara Sola',
             image: '../img/clara_sola.jpeg',
-            desc: 'El poster muestra a una mujer morena con un vestido blanco muy largo, el fondo esta cubierto de plantas helechos'
+            desc: 'El poster muestra a una mujer morena con un vestido blanco muy largo, el fondo esta cubierto de plantas y helechos'
         },
         {
             id: 'drama-aqui-y-ahora',
             title: 'Aquí y ahora',
             image: '../img/aqui_y_ahora.jpg',
-            desc: 'Muestra el rostro de una mujer blanca'
+            desc: 'Muestra el rostro de una mujer blanca, la imagen incluye dos sellos de premios'
         }
     ],
     'Comedia': [

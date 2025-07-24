@@ -43,23 +43,23 @@
             
             <form class="form-container" method="post" action="#" id="registrationForm">
                 <div class="form-group">
-                    <label for="nombre" class="form-label">Nombre <span class="required">*</span></label>
-                    <input type="text" id="nombre" name="nombre" class="form-input" required pattern="^[a-zA-Z]{2,}$" aria-describedby="nombre-hint errorNombre" title="Debe contener al menos 2 letras">
+                    <label for="nombre"  class="form-label">Nombre <span class="required">*</span></label>
+                    <input type="text" autocomplete="username" id="nombre" name="nombre" class="form-input" required pattern="^[a-zA-Z]{2,}$" aria-describedby="nombre-hint errorNombre" title="Debe contener al menos 2 letras">
                     <div id="nombre-hint" class="input-hint">Debe contener al menos 2 letras.</div>
                     <div class="error-message" id="errorNombre" aria-live="polite"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="nuevoPassword" class="form-label">Nuevo Password <span class="required">*</span></label>
-                    <input type="password" id="nuevoPassword" name="nuevoPassword" class="form-input" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$" aria-describedby="password-hint errorPassword" title="Debe contener al menos una minúscula, una mayúscula, un número y tener mínimo 6 caracteres">
+                    <label for="nuevoPassword"  class="form-label">Nuevo Password <span class="required">*</span></label>
+                    <input type="password" id="nuevoPassword" autocomplete="new-password" name="nuevoPassword" class="form-input" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$" aria-describedby="password-hint errorPassword" title="Debe contener al menos una minúscula, una mayúscula, un número y tener mínimo 6 caracteres">
                     <div id="password-hint" class="input-hint">Debe contener al menos una minúscula, una mayúscula, un número y tener mínimo 6 caracteres.</div>
                     <div class="error-message" id="errorPassword" aria-live="polite"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="provincia" class="form-label">Cine de su preferencia <span class="required">*</span></label>
+                    <label id="provinciaSelect-label" for="provincia" class="form-label">Cine de su preferencia <span class="required">*</span></label>
                     <!-- Select nativo oculto para validación -->
-                    <select id="provincia" name="provincia" class="form-input visually-hidden" required aria-hidden="true">
+                    <select tabindex="-1" id="provincia" name="provincia" class="form-input visually-hidden" required aria-hidden="true">
                         <option value="">Seleccione una provincia</option>
                         <option value="san-jose">San José</option>
                         <option value="alajuela">Alajuela</option>
@@ -90,8 +90,19 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="tecnologia-asistiva" class="form-label">Tecnología asistiva</label>
+                    <select id="tecnologia-asistiva" class="form-input native-select" name="tecnologia-asistiva" aria-describedby="tecnologia-asistiva-hint" title="Seleccione una tecnología asistiva">
+                        <option value="" disabled selected>Seleccione una tecnología asistiva</option>
+                        <option value="audifonos-con-audio-descriptivo">Audífonos con audio descriptivo</option>
+                        <option value="audifonos-con-control-independiente">Audífonos con control independiente de efectos, diálogos y música</option>
+                        <option value="transcripciones">Transcripciones en su teléfono inteligente</option>
+                    </select>
+                    <div id="tecnologia-asistiva-hint" class="input-hint">Opcional</div>
+                </div>
+
+                <div class="form-group">
                     <label for="fecha" class="form-label">Fecha <span class="required">*</span></label>
-                    <input type="date" id="fecha" name="fecha" class="form-input" required aria-describedby="errorFecha">
+                    <input type="date" autocomplete="bday" id="fecha" name="fecha" class="form-input" required aria-describedby="errorFecha">
                     <div class="error-message" id="errorFecha" aria-live="polite"></div>
                 </div>
 

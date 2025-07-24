@@ -2,9 +2,9 @@
 :root {
     --background-color: #ffffff;
     --text-color: #494949;
-    --primary-color: #007bff;
-    --error-color: #E04D5D;
-    --error-background: #FFD6D6;
+    --primary-color: #0054AD;
+    --error-color: #A00316;
+    --error-background: #FFEBEB;
     --border-color: #dddddd;
     --hover-color: #f8f9fa;
     --sidebar-background: #f8f9fa;
@@ -282,7 +282,7 @@ body {
 .form-input {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid var(--border-color);
+    border: 2px solid var(--border-color);
     border-radius: 4px;
     font-size: 1rem;
     background-color: var(--background-color);
@@ -338,7 +338,7 @@ body {
     justify-content: space-between;
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid var(--border-color);
+    border: 2px solid var(--border-color);
     border-radius: 4px;
     background-color: var(--background-color);
     cursor: pointer;
@@ -408,6 +408,59 @@ body {
 .select-option[aria-selected="true"] {
     background-color: var(--primary-color);
     color: white;
+}
+
+.input-hint {
+    font-size: 0.875rem;
+    color: #555;
+    background-color: #fff;
+    margin-top: 0.25rem;
+}
+
+.error-message {
+    font-size: 0.875rem;
+    color: var(--error-color);
+    margin-top: 0.25rem;
+    min-height: 1.2em;
+}
+
+.error-message:empty {
+    display: none;
+}
+
+/* Estilos específicos para select nativos que deben verse como los personalizados */
+.form-input.native-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23494949' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 12px;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+.form-input.native-select:hover {
+    border-color: var(--primary-color);
+}
+
+.form-input.native-select:focus {
+    border-color: var(--primary-color);
+    outline: var(--focus-outline);
+    outline-offset: 2px;
+}
+
+.form-input.native-select.error {
+    border-color: var(--error-color) !important;
+    background-color: var(--error-background) !important;
+    color: var(--error-color) !important;
+}
+
+.form-input.native-select.error:focus {
+    border-color: var(--error-color) !important;
+    background-color: var(--error-background) !important;
+    color: var(--error-color) !important;
 }
 
 /* Submit Button */
@@ -607,7 +660,7 @@ body {
 /* Skip to main content link */
 .skip-link {
     position: absolute;
-    top: -40px;
+    top: -60px;
     left: 6px;
     background: var(--primary-color);
     color: white;

@@ -6,7 +6,7 @@
     <title>Proyecto de Accesibilidad Web</title>
     <style>
         :root {
-            --primary-color: #007bff;
+            --primary-color: #0054AD;
             --background-color: #ffffff;
             --text-color: #494949;
             --card-background: #f8f9fa;
@@ -136,11 +136,6 @@
         
         .footer a {
             color: var(--primary-color);
-            text-decoration: none;
-        }
-        
-        .footer a:hover {
-            text-decoration: underline;
         }
         
         @media (max-width: 768px) {
@@ -215,8 +210,8 @@
         
         <footer class="footer">
             <p>
-                Proyecto educativo sobre accesibilidad web • 
-                <a href="README.md">Ver documentación</a>
+                <span> educativo sobre accesibilidad web • </span>
+                <a class="footer-link" aria-label="Ver documentación" href="README.md">Ver documentación</a>
             </p>
         </footer>
     </div>
